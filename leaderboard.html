@@ -3,31 +3,28 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Leaderboard</title>
 
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
     <div class="card-title">
-        <h1 class="login-title">Login Page</h1>
-        <h2 class="login-desc">Enter your username and password below</h2>
-        <div class="missing"></div>
+        <h1 class="login-title">Leaderboard</h1>
+        <h2 class="login-desc">These guys are the best of the best! Sheesh!</h2>
     </div>
-    <div class="login-card">
-        <form class="login-form">
-            <input class="username-input" placeholder="username" required>
-            <input class="password-input" type="password" placeholder="password" required>
-        </form>
-    </div>
+    <table class="leaderboard-table">
+        <tr>
+            <th>Username</th>
+            <th>High Score</th>
+        </tr>
+    </table>
     <div id="root">
         <button onClick="location.href='index.html'" class="home-button">Home</button>
-        <button onClick="location.href='register.html'" class="register-button">Register</button>
-        <button class="login-button">Login</button>
     </div>
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/axios/dist/axios.js"></script>
-    <script type=module src="login-backend.js"></script>
+    <script type=module src="leaderboard-backend.js"></script>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>

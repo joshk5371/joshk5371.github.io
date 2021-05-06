@@ -87,7 +87,7 @@ body {
     justify-content: center;
 }
 
-.start-button, .direction-button , .login, .joke-button, .logout-button {
+.start-button, .direction-button , .login, .joke-button, .logout-button, .leaderboard-button {
     cursor: pointer;
     font-family:'Courier New', Courier, monospace;
     font-weight: bold;
@@ -98,7 +98,7 @@ body {
     margin-right: 10px;
 }
 
-.login-card {
+.login-card, .leaderboard-table {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 700px;
     margin: auto;
@@ -113,7 +113,15 @@ body {
     padding-left: 20px;
 }
 
-.login-button, .register-button {
+.leaderboard-table {
+    width: 100%;
+}
+
+.leaderboard-username {
+    position: absolute;
+}
+
+.login-button, .register-button, .home-button {
     cursor: pointer;
     font-family:'Courier New', Courier, monospace;
     font-weight: bold;
