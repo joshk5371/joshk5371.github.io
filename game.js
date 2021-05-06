@@ -62,7 +62,11 @@ export const moveOutcomes = function () {
         let $num = $('.number-fact');
         getNumbersFact(score).then((result) => {
             $end.append(`<div>Game Over</div>`);
-            $num.append(`<div>${result}</div>`);
+            if (score == 0) {
+                $num.append(`<div>0 is the atomic number of the theoretical element tetraneutron</div>`);
+            } else {
+                $num.append(`<div>${score} is ${result.text}</div>`);
+            }
         })
         return clearInterval(interval);
     }
@@ -120,7 +124,7 @@ export const updateScore = function () {
     $score.append(`<span class='score'>${score}</span>`);
 }
 
-export const handleDirectionsButton = function() {
+export const handleDirectionsButton = function () {
     let $directions = $(".directions");
     if (directions) {
         $directions.empty();
@@ -148,12 +152,26 @@ export async function getQuote() {
     return result.data;
 }
 
+// export async function getNumbersFact(number) {
+//     const result = await axios({
+//         method: 'GET',
+//         url: 'http://numbersapi.com/' + number,
+//     })
+
+//     return result.data;
+// }
+
 export async function getNumbersFact(number) {
     const result = await axios({
         method: 'GET',
-        url: 'http://numbersapi.com/' + number,
-    })
-
+        url: 'https://numbersapi.p.rapidapi.com/' + number + '/trivia',
+        params: { json: 'true', fragment: 'true' },
+        headers: {
+            'x-rapidapi-key': '228b01284bmshe3a9a1aa09294aap1fd479jsnc9c80ecc5b7d',
+            'x-rapidapi-host': 'numbersapi.p.rapidapi.com'
+        }
+    });
+    console.log(result.data);
     return result.data;
 }
 
