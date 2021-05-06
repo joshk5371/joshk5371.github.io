@@ -171,8 +171,8 @@ export async function getNumbersFact(number) {
             'x-rapidapi-host': 'numbersapi.p.rapidapi.com'
         }
     });
-    console.log(result.data);
     return result.data;
+    
 }
 
 $(function () {
