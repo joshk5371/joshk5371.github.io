@@ -135,12 +135,24 @@ export const handleDirectionsButton = function () {
     }
 }
 
+export const handleJokeButton = function () {
+    let $quote = $('.snake-quote');
+    $quote.empty();
+    getRandomJoke().then((result) => {
+        let joke = result.setup;
+        let answer = result.punchline;
+        $quote.append(`<div>${joke}</div> <div>${answer}</div>`);
+    })
+
+}
+
 export const loadGameIntoDOM = function () {
     let $root = $("#root");
     renderQuote();
     renderBoard();
     $root.on('click', ".start-button", startGame);
-    $root.on('click', '.direction-button', handleDirectionsButton)
+    $root.on('click', '.direction-button', handleDirectionsButton);
+    $root.on('click', '.joke-button', handleJokeButton);
     $(document).on('keydown', handleArrowKeys);
 }
 
@@ -172,7 +184,15 @@ export async function getNumbersFact(number) {
         }
     });
     return result.data;
-    
+
+}
+
+export async function getRandomJoke() {
+    const result = await axios ({
+        method: 'GET',
+        url: 'https://official-joke-api.appspot.com/random_joke'
+    });
+    return result.data;
 }
 
 $(function () {

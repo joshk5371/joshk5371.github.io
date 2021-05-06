@@ -81,7 +81,7 @@ body {
     justify-content: center;
 }
 
-.start-button, .direction-button , .login {
+.start-button, .direction-button , .login, .joke-button {
     cursor: pointer;
     font-family:'Courier New', Courier, monospace;
     font-weight: bold;
