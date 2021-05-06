@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Snake Game</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="card-title">
+        <h1 class="snake-title">Snake</h1>
+        <h2 class="snake-quote"></h2>
+        <h3 class="snake-score">Score: <span class="score">0</span></h3>
+        <div class="end-game"></div>
+        <div class="number-fact"></div>
+    </div>
+    <div class="snake-board"></div>
+    <div id="root">
+        <button class="start-button">Start/Restart</button>
+        <button class="direction-button">Directions</button>
+        <button class="login">Login/Register</button>
+    </div>
+    <div class="directions"></div>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/axios/dist/axios.js"></script>
+    <script type=module src="game.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBAx_e76ctxOTtZqPVAnn2BAY3wTUFXIdU",
+            authDomain: "snake-game-33967.firebaseapp.com",
+            projectId: "snake-game-33967",
+            storageBucket: "snake-game-33967.appspot.com",
+            messagingSenderId: "979224714309",
+            appId: "1:979224714309:web:3ea964d5b6fc26fcd7172c"
+        };
+        // Initialize Firebase
+        // firebase.initializeApp(firebaseConfig);
+        firebase.initializeApp({
+            apiKey: "AIzaSyBAx_e76ctxOTtZqPVAnn2BAY3wTUFXIdU",
+            authDomain: "snake-game-33967.firebaseapp.com",
+            projectId: "weKp2vkEGxGZGlK8aXpp"
+        })
+
+        var db = firebase.firestore();
+    </script>
+</body>
+
+</html>

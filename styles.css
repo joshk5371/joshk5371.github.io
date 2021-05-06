@@ -1,0 +1,93 @@
+body {
+    background-color: lightblue;
+}
+
+.snake-title {
+    display: flex;
+    justify-content: center;
+    font-family:'Courier New', Courier, monospace;
+    font-size: xx-large;
+}
+
+.snake-quote, .directions {
+    text-align: center;
+}
+
+.directions {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.snake-quote div, .snake-score, .end-game, .end-game, .number-fact, .directions {
+    display: flex;
+    justify-content: center;
+    font-family:'Courier New', Courier, monospace;
+    font-size: large;
+}
+
+.end-game, .number-fact {
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* .snake-score {
+    padding: 10px;
+} */
+
+.snake-board {
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+
+.snake-board div {
+    width: 20px;
+    height: 20px;
+    
+}
+
+.snake {
+    width: 20px;
+    height: 20px;
+    background-color: lightgreen;
+}
+
+.apple {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+
+/* .start-button, .direction-button {
+    display: flex;
+    cursor: pointer;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding-inline: 20px;
+    background-color: rgb(247, 233, 222);
+    margin: auto;
+    margin-top: 20px;
+} */
+
+#root {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+.start-button, .direction-button , .login {
+    cursor: pointer;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding-inline: 20px;
+    background-color: rgb(247, 233, 222);
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-right: 10px;
+}
