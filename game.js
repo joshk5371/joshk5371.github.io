@@ -9,13 +9,49 @@ let speed = 0.99;
 let intervalTime = 1000;
 let interval = 0;
 let directions = false;
+let username = localStorage.getItem('username');
+let highscore = localStorage.getItem('score')
+
+// firebase.initializeApp({
+//     apiKey: "AIzaSyBAx_e76ctxOTtZqPVAnn2BAY3wTUFXIdU",
+//     authDomain: "snake-game-33967.firebaseapp.com",
+//     projectId: "snake-game-33967"
+// })
+
+export const testDB = function () {
+    let password = "";
+    let object;
+    let $username = "joshk1"
+    db.collection("users").where("username", "==", $username).get().then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+            object = doc.data();
+            console.log(object);
+        })
+    });
+    if (object != null) {
+        console.log('yeet');
+    }
+    console.log(highscore);
+}
+
+export const renderLogoutButton = function () {
+    let $logindiv = $('.login-div');
+    $logindiv.empty();
+    $logindiv.append(`<button class="logout-button">Logout</button>`);
+}
+
+export const renderNameHighScore = function () {
+    $('.username').append(`<div>Hi ${username}!</div>`) 
+    
+    $('.highscore').append(`<div>Highest Score:${highscore}</div>`);
+}
 
 export const renderQuote = function () {
     let $quote = $(".snake-quote");
     let quote = "";
     let author = "-";
     getQuote().then((data) => {
-        let index = Math.floor(Math.random() * (500));
+        let index = Math.floor(Math.random() * (1600));
         let object = data[index];
         quote = object.text;
         author = author + object.author;
@@ -68,6 +104,16 @@ export const moveOutcomes = function () {
                 $num.append(`<div>${score} is ${result.text}</div>`);
             }
         })
+        if (score > highscore) {
+            highscore = score;
+            db.collection("users").doc(username).update({
+                highscore: score
+            }).then((snapshot) => {
+                localStorage.setItem('score', score)
+            });
+            $('.highscore').empty();
+            $('.highscore').append(`<div>Highest Score:${highscore}</div>`);
+        }
         return clearInterval(interval);
     }
 
@@ -146,10 +192,24 @@ export const handleJokeButton = function () {
 
 }
 
+export const handleLogoutButton = function () {
+    username = null;
+    highscore = null;
+    localStorage.removeItem('username');
+    localStorage.removeItem('score');
+    location.replace('index.html');
+}
+
 export const loadGameIntoDOM = function () {
     let $root = $("#root");
+    testDB();
+    if (username != null) {
+        renderNameHighScore();
+        renderLogoutButton();
+    }
     renderQuote();
     renderBoard();
+    $root.on('click', '.logout-button', handleLogoutButton);
     $root.on('click', ".start-button", startGame);
     $root.on('click', '.direction-button', handleDirectionsButton);
     $root.on('click', '.joke-button', handleJokeButton);
@@ -196,5 +256,6 @@ export async function getRandomJoke() {
 }
 
 $(function () {
+    console.log(localStorage.length);
     loadGameIntoDOM();
 });

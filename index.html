@@ -11,6 +11,8 @@
 <body>
     <div class="card-title">
         <h1 class="snake-title">Snake</h1>
+        <div class="username"></div>
+        <div class="highscore"></div>
         <h2 class="snake-quote"></h2>
         <h3 class="snake-score">Score: <span class="score">0</span></h3>
         <div class="end-game"></div>
@@ -20,7 +22,9 @@
     <div id="root">
         <button class="start-button">Start/Restart</button>
         <button class="direction-button">Directions</button>
-        <button class="login">Login/Register</button>
+        <div class="login-div">
+            <button onClick="location.href='login.html'" class="login">Login/Register</button>
+        </div>
         <button class="joke-button">Random Joke</button>
     </div>
     <div class="directions"></div>
@@ -49,14 +53,9 @@
             appId: "1:979224714309:web:3ea964d5b6fc26fcd7172c"
         };
         // Initialize Firebase
-        // firebase.initializeApp(firebaseConfig);
-        firebase.initializeApp({
-            apiKey: "AIzaSyBAx_e76ctxOTtZqPVAnn2BAY3wTUFXIdU",
-            authDomain: "snake-game-33967.firebaseapp.com",
-            projectId: "weKp2vkEGxGZGlK8aXpp"
-        })
-
+        firebase.initializeApp(firebaseConfig);
         var db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
     </script>
 </body>
 

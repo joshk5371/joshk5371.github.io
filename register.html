@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="card-title">
+        <h1 class="login-title">Register Page</h1>
+        <h2 class="login-desc">Create a username and password below</h2>
+        <div class="missing"></div>
+    </div>
+    <div class="login-card">
+        <form class="login-form">
+            <input class="username-input" placeholder="username" required>
+            <input class="password-input" type="password" placeholder="password" required>
+        </form>
+    </div>
+    <div id="root">
+        <button class="register-button">Register</button>
+    </div>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/axios/dist/axios.js"></script>
+    <script type=module src="register-backend.js"></script>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+    
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBAx_e76ctxOTtZqPVAnn2BAY3wTUFXIdU",
+                authDomain: "snake-game-33967.firebaseapp.com",
+                projectId: "snake-game-33967",
+                storageBucket: "snake-game-33967.appspot.com",
+                messagingSenderId: "979224714309",
+                appId: "1:979224714309:web:3ea964d5b6fc26fcd7172c"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            db.settings({ timestampsInSnapshots: true });
+        </script>
+</body>
+
+</html>
