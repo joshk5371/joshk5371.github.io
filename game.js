@@ -83,6 +83,8 @@ export const moveOutcomes = function () {
         let $num = $('.number-fact');
         gameEnded = true;
         getNumbersFact(score).then((result) => {
+            $end.empty();
+            $num.empty();
             $end.append(`<div>Game Over</div>`);
             if (score == 0) {
                 $num.append(`<div>0 is the atomic number of the theoretical element tetraneutron</div>`);
