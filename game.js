@@ -130,22 +130,24 @@ export const addNewApple = function () {
 }
 
 export const handleArrowKeys = function (event) {
-    squares[currentIndex].classList.remove('snake');
-    if (event.keyCode == 39) {
-        if (direction != -1) {
-            direction = 1; // right
-        }
-    } else if (event.keyCode == 38) {
-        if (direction != width) {
-            direction = -width; // up
-        }
-    } else if (event.keyCode == 37) {
-        if (direction != 1) {
-            direction = -1; // left
-        }
-    } else if (event.keyCode == 40) {
-        if (direction != -width) {
-            direction = width; // down
+    if (!gameEnded) {
+        squares[currentIndex].classList.remove('snake');
+        if (event.keyCode == 39) {
+            if (direction != -1) {
+                direction = 1; // right
+            }
+        } else if (event.keyCode == 38) {
+            if (direction != width) {
+                direction = -width; // up
+            }
+        } else if (event.keyCode == 37) {
+            if (direction != 1) {
+                direction = -1; // left
+            }
+        } else if (event.keyCode == 40) {
+            if (direction != -width) {
+                direction = width; // down
+            }
         }
     }
 }
@@ -235,7 +237,7 @@ export async function getNumbersFact(number) {
 }
 
 export async function getRandomJoke() {
-    const result = await axios ({
+    const result = await axios({
         method: 'GET',
         url: 'https://official-joke-api.appspot.com/random_joke'
     });
