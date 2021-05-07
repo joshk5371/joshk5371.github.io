@@ -63,7 +63,7 @@ export const startGame = function () {
     squares[appleIndex].classList.remove('apple');
     clearInterval(interval);
     score = 0;
-    randomApple();
+    addNewApple();
     direction = 1;
     updateScore();
     intervalTime = 125;
@@ -111,7 +111,7 @@ export const moveOutcomes = function () {
         squares[currentSnake[0]].classList.remove('apple')
         squares[tail].classList.add('snake');
         currentSnake.push(tail);
-        randomApple();
+        addNewApple();
         score += 1;
         updateScore();
         clearInterval(interval);
@@ -121,7 +121,7 @@ export const moveOutcomes = function () {
     squares[currentSnake[0]].classList.add('snake');
 }
 
-export const randomApple = function () {
+export const addNewApple = function () {
     do {
         appleIndex = Math.floor(Math.random() * squares.length)
     } while (squares[appleIndex].classList.contains('snake')) {
