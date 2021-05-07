@@ -133,6 +133,7 @@ export const addNewApple = function () {
 
 export const handleArrowKeys = function (event) {
     if (!gameEnded) {
+        event.preventDefault();
         squares[currentIndex].classList.remove('snake');
         if (event.keyCode == 39) {
             if (direction != -1) {
