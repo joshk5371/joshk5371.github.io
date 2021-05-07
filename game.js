@@ -10,29 +10,14 @@ let intervalTime = 1000;
 let interval = 0;
 let directions = false;
 let username = localStorage.getItem('username');
-let highscore = localStorage.getItem('score')
+let highscore = localStorage.getItem('score');
+let gameEnded = false;
 
 // firebase.initializeApp({
 //     apiKey: "AIzaSyBAx_e76ctxOTtZqPVAnn2BAY3wTUFXIdU",
 //     authDomain: "snake-game-33967.firebaseapp.com",
 //     projectId: "snake-game-33967"
 // })
-
-export const testDB = function () {
-    let password = "";
-    let object;
-    let $username = "joshk1"
-    db.collection("users").where("username", "==", $username).get().then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-            object = doc.data();
-            console.log(object);
-        })
-    });
-    if (object != null) {
-        console.log('yeet');
-    }
-    console.log(highscore);
-}
 
 export const renderLogoutButton = function () {
     let $logindiv = $('.login-div');
@@ -41,8 +26,7 @@ export const renderLogoutButton = function () {
 }
 
 export const renderNameHighScore = function () {
-    $('.username').append(`<div>Hi ${username}!</div>`) 
-    
+    $('.username').append(`<div>Hi ${username}!</div>`);
     $('.highscore').append(`<div>Highest Score:${highscore}</div>`);
 }
 
@@ -74,6 +58,7 @@ export const renderBoard = function () {
 export const startGame = function () {
     $(".end-game").empty();
     $(".number-fact").empty();
+    gameEnded = false;
     currentSnake.forEach(index => squares[index].classList.remove('snake'));
     squares[appleIndex].classList.remove('apple');
     clearInterval(interval);
@@ -96,6 +81,7 @@ export const moveOutcomes = function () {
         squares[currentSnake[0] + direction].classList.contains('snake')) {
         let $end = $(".end-game");
         let $num = $('.number-fact');
+        gameEnded = true;
         getNumbersFact(score).then((result) => {
             $end.append(`<div>Game Over</div>`);
             if (score == 0) {
@@ -202,18 +188,19 @@ export const handleLogoutButton = function () {
 
 export const loadGameIntoDOM = function () {
     let $root = $("#root");
-    testDB();
     if (username != null) {
         renderNameHighScore();
         renderLogoutButton();
     }
     renderQuote();
     renderBoard();
+    if (!gameEnded) {
+        $(document).on('keydown', handleArrowKeys);
+    }
     $root.on('click', '.logout-button', handleLogoutButton);
     $root.on('click', ".start-button", startGame);
-    $root.on('click', '.direction-button', handleDirectionsButton);
     $root.on('click', '.joke-button', handleJokeButton);
-    $(document).on('keydown', handleArrowKeys);
+    $root.on('click', '.direction-button', handleDirectionsButton);
 }
 
 export async function getQuote() {
@@ -256,6 +243,5 @@ export async function getRandomJoke() {
 }
 
 $(function () {
-    console.log(localStorage.length);
     loadGameIntoDOM();
 });
